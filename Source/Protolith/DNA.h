@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Gene.h"
 #include "DNA.generated.h"
 
-
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class PROTOLITH_API UDNA : public UActorComponent
 {
 	GENERATED_BODY()
@@ -21,33 +21,19 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	// an array of our genes
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		TArray<Gene*> Genes;
+		TArray<UGene*> Genes;
 
 	// number of genes
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int NumberOfGenes;
 
-	// mutates the genes and returns itself
+	// returns a copy of itself
 	UFUNCTION(BlueprintCallable)
-		UDNA Replicate(UDNA* origDNA);
-
-};
-
-//	Gene class - holds a float value
-class Gene
-{
-public:
-	// mutate itself and return the value
-	Gene* Mutate(Gene* origGene);
-	// return the floatValue]
-	float getValue();
-
-private:
-	// the particular sequence of bits for this gene
-	float floatValue;
+		UDNA* Replicate(UDNA* origDNA);
 };

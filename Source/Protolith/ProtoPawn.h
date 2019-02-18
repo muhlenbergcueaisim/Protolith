@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "DNA.h"
+#include "Components/BoxComponent.h"
+#include "Components/ArrowComponent.h"
+
 #include "ProtoPawn.generated.h"
 
 UCLASS()
@@ -29,5 +32,21 @@ public:
 
 	// this pawn's DNA object
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		DNA 
+		UDNA* DNA;
+
+	/*
+	*	SCENE COMPONENTS
+	*/
+
+	// Root scene component
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServbotDash")
+		USceneComponent* Root;
+
+	// the blueprint component to represent pointing direction
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServbotDash")
+		UArrowComponent* MyArrowComponent;
+
+	// blueprint component for the box component
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServbotDash")
+		UBoxComponent* MyBoxComponent;
 };

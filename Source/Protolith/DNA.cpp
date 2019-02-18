@@ -8,7 +8,12 @@ UDNA::UDNA()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
+	NumberOfGenes = 1;
+	int i = 0;
+	for (int i = 0; i < NumberOfGenes; i++)
+	{
+		Genes[i]->floatValue = 0;
+	}
 	// ...
 }
 
@@ -22,7 +27,6 @@ void UDNA::BeginPlay()
 	
 }
 
-
 // Called every frame
 void UDNA::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -32,31 +36,8 @@ void UDNA::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTi
 }
 
 // returns a replicate of the DNA object
-UDNA UDNA::Replicate(UDNA* origDNA)
+UDNA* UDNA::Replicate(UDNA* origDNA)
 {
-	return UDNA();
-}
-
-//	mutates and returns the gene
-Gene* Gene::Mutate(Gene* origGene)
-{
-	// store the original value
-	float origValue = origGene->floatValue;
-	// mutate the original value
-	bool isPositive = FMath::RandBool();
-	float randomFloat = FMath::FRandRange(0, 0.01);
-	float mutatedValue = (isPositive ? (origValue + randomFloat) : (origValue - randomFloat));
-
-	//	set the new gene's value to the mutated value
-	origGene->floatValue = mutatedValue;
-
-	// print a log of the new value
-	UE_LOG(LogTemp, Warning, TEXT("gene value: %f"), origGene->floatValue);
-
-	return origGene;
-}
-
-float Gene::getValue()
-{
-	return this->floatValue;
+	UDNA* alias = origDNA;
+	return alias;
 }

@@ -7,6 +7,11 @@ AProtoPawn::AProtoPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	
+	Root = CreateDefaultSubobject<USceneComponent>("Root");
+	RootComponent = Root;
+	DNA = CreateDefaultSubobject<UDNA>("DNA");
+	DNA->Genes[0]->floatValue = 4.7f;
 
 }
 
@@ -14,6 +19,7 @@ AProtoPawn::AProtoPawn()
 void AProtoPawn::BeginPlay()
 {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Warning, TEXT("pawn genes: %f"), DNA->Genes[0]->floatValue);
 	
 }
 

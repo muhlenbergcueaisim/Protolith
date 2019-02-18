@@ -24,3 +24,14 @@ void APopulationActor::Tick(float DeltaTime)
 
 }
 
+// initializes the population and returns an array of pawn actors
+TArray<AProtoPawn*> APopulationActor::PopGenesis()
+{
+	return TArray<AProtoPawn*>();
+}
+
+void APopulationActor::EvaluateFitness(TArray<AProtoPawn*> Pop)
+{
+	UE_LOG(LogTemp, Warning, TEXT("evaluating fitness..."));
+}
+
