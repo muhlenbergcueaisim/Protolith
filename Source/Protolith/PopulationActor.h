@@ -40,6 +40,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Protolith", meta = (UIMin = "0.0", UIMax = "1.0"))
 		float crossoverChance = 0.2;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Protolith")
+		AProtoPawn* pawnToSpawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Protolith")
+		FTransform popOrigin;
+
 	// an array of pointers to actors in the population
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TArray<AProtoPawn*> Population;
@@ -47,6 +53,9 @@ public:
 	// initializes the population
 	UFUNCTION(BlueprintCallable, Category = "Protolith")
 		TArray<AProtoPawn*> PopGenesis();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Protolith")
+		TSubclassOf<AProtoPawn> PawnType;
 
 	// evaluates the fitness of each member of the population
 	UFUNCTION(BlueprintCallable, Category = "Protolith")

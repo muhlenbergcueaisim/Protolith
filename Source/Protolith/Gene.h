@@ -3,25 +3,49 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+
 #include "Gene.generated.h"
+
 /**
  * 
  */
 
-UCLASS()
-class PROTOLITH_API UGene : public UObject
+UCLASS(Blueprintable, ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+class PROTOLITH_API UGene : public UActorComponent
 {
 	GENERATED_BODY()
-
 public:
+	//Constructor
 	UGene();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float floatValue;
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
+public:
 
-	UFUNCTION(BlueprintCallable)
+	//Always make USTRUCT variables into UPROPERTY()
+	//    any non-UPROPERTY() struct vars are not replicated
+
+	// So to simplify your life for later debugging, always use UPROPERTY()
+	UPROPERTY()
+	int32 SampleInt32;
+
+	//If you want the property to appear in BP, make sure to use this instead
+	//UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Protolith")
+		float FloatValue;
+
+	//Set
+	void SetInt(const int32 NewValue)
+	{
+		SampleInt32 = NewValue;
+	}
+
+
+
+	UFUNCTION(BlueprintCallable, Category = "Protolith")
 		UGene* Mutate(UGene* origGene);
 
-	UFUNCTION(BlueprintCallable)
-	float GetValue();
+	
 };

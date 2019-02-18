@@ -8,13 +8,10 @@ UDNA::UDNA()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-	NumberOfGenes = 1;
-	int i = 0;
-	for (int i = 0; i < NumberOfGenes; i++)
-	{
-		Genes[i]->floatValue = 0;
-	}
-	// ...
+	float floatVal = 0.7f;
+	
+	//Genes.Add(Gene);
+
 }
 
 
@@ -23,6 +20,14 @@ void UDNA::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// ...
+	NumberOfGenes = 1;
+	for (int i = 0; i <= NumberOfGenes; i++)
+	{
+		//UStruct newGene;
+		//Genes[i] = &newGene;
+		//Genes[i]->floatValue = 0;
+	}
 	// ...
 	
 }
@@ -41,3 +46,4 @@ UDNA* UDNA::Replicate(UDNA* origDNA)
 	UDNA* alias = origDNA;
 	return alias;
 }
+

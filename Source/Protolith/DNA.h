@@ -26,14 +26,20 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	// an array of our genes
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Protolith")
 		TArray<UGene*> Genes;
 
+	// an individual gene struct
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Protolith")
+		//UStruct* Gene;
+
 	// number of genes
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Protolith")
 		int NumberOfGenes;
 
 	// returns a copy of itself
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "Protolith")
 		UDNA* Replicate(UDNA* origDNA);
+
+
 };
